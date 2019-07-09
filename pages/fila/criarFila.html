@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Easy Pass</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+</head>
+<body>
+<header>
+<!-- MENU -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
+        <a href="" class="navbar-brand">Easy Pass</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a href="" class="nav-link">Filas</a>
+                </li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item active justify-content-end"><a href="" class="btn btn-outline-light">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+<!-- MENU -->
+    <div class="container mt-5">
+        <div class="card col col-sm-8 col-md-6 mx-auto" style="margin-top: 10vh">
+            <div class="card-body">
+                <form id="formCriaFila" action="./listarFilas.html" class="needs-validation" novalidate="novalidate">
+
+                <div class="form-group mx-auto">
+                    <label for="inNomeDaFila">Nome da Fila</label>
+                    <input type="text" id="inNomeDaFila" class="form-control" minlength="4" required>
+                    <div class="invalid-feedback">
+                        O nome da fila deve conter pelo menos 4 letras
+                    </div>
+                    <!-- <small class="form-text text-muted">O nome da fila deve conter pelo menos 4 caracteres.</small> -->
+                    
+                </div>
+                <hr>
+                <div class="form-check" id="divPrioridade">
+                    <input class="form-check-input" type="checkbox" id="checkPrioridade">
+                    <label for="checkPrioridade" class="form-check-label">Fila com prioridade</label>
+                    <small class="form-text text-muted">Caso a fila tenha prioridade (ex: Gestantes, Deficientes físicos, idosos)</small>
+                </div>
+                <hr>
+                <div class="mx-auto" id="divTempoLimite">
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="checkTempoLimite">
+                        <label for="checkTempoLimite" class="form-check-label">Tempo de duração</label>
+                    </div>
+                    <!-- <fieldset id="inTempoLimite" disabled>
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-6 form-group mx-auto">
+                                <label for="inHorasLimite">Horas</label>
+
+                                <input id="inHorasLimite" type="number" class="form-control">
+                            </div> 
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-6 form-group mx-auto">
+                                <label for="inMinutosLimite">Minutos</label>
+
+                                <input id="inMinutosLimite" type="number" class="form-control">
+                            </div>
+                        </div>
+                        <small class="form-text text-muted">Marque o checkbox para definir um tempo limite para que a fila fique aberta.</small>
+                    </fieldset> -->
+                    <fieldset id="inTempoLimite" disabled>
+                        <div class="row">
+                            <div class="form-group col-12 col-sm-12 col-md-12 col-lg-6 mx-auto">
+                                <label for="tempoInicio">Inicio</label>
+                                <input id="tempoInicio" type="time" class="form-control" value="00:00">
+                            </div>
+                            <div class="form-group col-12 col-sm-12 col-md-12 col-lg-6 mx-auto">
+                                <label for="tempoFim">Fim</label>
+                                <input id="tempoFim" type="time" class="form-control" value="00:00">
+                                <div class="invalid-feedback">O tempo de finalização deve ser maior que o de início</div>
+                            </div>
+                        </div>
+                        <small class="text-form text-muted">Formato 24h.</small>
+                    </fieldset>        
+                </div>
+                <hr>
+                <div class="mx-auto" id="divSenhasLimite">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="checkSenhasLimite">
+                        <label for="checkSenhasLimite" class="form-check-label">Limite de senhas</label>
+                    </div>
+                    <fieldset id="senhasLimite" disabled>
+                        <div class="row " disabled>
+                            <div class="col form-group">
+                                <!-- <label for="inSenhasLimite">Horas</label> -->
+                                <input id="inSenhasLimite" type="number" class="form-control" min="1" minlength="1" value=0>
+                            </div>
+                            <div class="invalid-feedback">
+                                O limite mínimo da fila deve ser passado
+                            </div>
+                        </div>
+                        <small class="form-text text-muted">Marque o checkbox para definir um limite máximo de senhas.</small>
+                    </fieldset>
+                </div>
+                <hr>
+                <div class="mx-auto" id="divCamposOpicionais">
+                    <h5>Campos opicionais</h5>
+                    <div class="mx-auto">
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="checkNome">
+                            <label for="checkNome" class="form-check-label">Nome</label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="checkCpf">
+                            <label for="checkCpf" class="form-check-label">CPF</label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="checkIdade">
+                            <label for="checkIdade" class="form-check-label">Idade</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div class="form-check mx-auto">
+                        <input class="form-check-input" type="checkbox" id="checkLimiteDeSenhas">
+                        <label for="checkLimiteDeSenhas" class="form-check-label">Limite de senhas</label>
+                    </div>
+                </div> -->
+                
+                <!-- div.form-group -->
+                <div class="row mx-auto">
+                    <button class="btn btn-primary col-6 mx-auto">Criar fila</button>
+                </div>
+             
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+<script>
+    
+</script>
+<footer>
+    <script src="../../static/js/bootstrap.min.js"></script>
+    <script src="../../static/js/jquery.min.js"></script>
+    <script src="../../static/js/popper.min.js"></script>
+    <script src="../../static/js/custom/criarFila.js"></script>
+</footer>
+</body>
+</html>

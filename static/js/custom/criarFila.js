@@ -21,26 +21,27 @@ function Fila(id, nome, fila_com_prioridade = false, horario_de_inicio = false,
     this.opcional_nome = opcional_nome;
     this.opcional_idade = opcional_idade;
 
-    // this.senhas = []
+}
 
-
-    function add_senha() {
-        this.ultimaSenha++;
-        this.senhas.push({"senha" : this.ultimaSenha});
-    }
-
-    function getUltimaSenha() {
-        return this.ultimaSenha;
-    }
-
-    function getProxSenha() {
-        return this.proxSenha;
-    }
-
-    function chamarSenha() {
-        this.proxSenha++;
+function add_senha(fila) {
+    if((fila.limite_de_senhas && fila.limite_de_senhas !== fila.ultima_senha) || !fila.limite_de_senhas) {
+        fila.ultima_senha += 1;
+        return fila.ultima_senha;
+    } else {
+        return false;
     }
 }
+
+
+function chamar_senha(fila) {
+    if(fila.senha_atual < fila.ultima_senha) {
+        fila.senha_atual++
+        return fila.senha_atual
+    } else {
+        return fila.senha_atual
+    }
+}
+
 
 window.addEventListener('load', function() {
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
